@@ -57,12 +57,16 @@ var LinkedList = function() {
       return 'Error: Target Value does not exist';
     }
     
-    var newNode = Node(value);
-    
-    newNode.next = targetNode.next;
-    targetNode.next = newNode;
-    
-    list.length++;
+    if (targetNode.next === null) {
+      list.addToTail(value);
+      
+    } else {
+      var newNode = Node(value);
+      newNode.next = targetNode.next;
+      targetNode.next = newNode;
+      
+      list.length++;
+    }
   };
     
 
@@ -80,4 +84,10 @@ var Node = function(value) {
 
 /*
  * Complexity: What is the time complexity of the above functions?
+ 
+ addToTail: constant
+ removeHead: constant
+ traverse: linear
+ contains: linear
+ insert: linear
  */
