@@ -51,5 +51,9 @@ describe('linkedList', function() {
     expect(linkedList.contains(4)).to.equal(false);
   });
 
-  // add more tests here to test the functionality of linkedList
+  it('should create a new node when a value is inserted'), function() {
+    linkedList.addToTail(4);
+    linkedList.addToTail(6);
+    linkedList.insert()
+  }
 });
