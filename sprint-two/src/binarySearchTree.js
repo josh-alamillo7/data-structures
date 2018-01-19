@@ -10,9 +10,6 @@ var BinarySearchTree = function(value) {
 
 BinarySearchTreeMethods = {};
 
-BinarySearchTreeMethods.traverse = function (value) {
-  
-};
 
 BinarySearchTreeMethods.insert = function (value) {
   if (this.value > value) {
@@ -65,4 +62,8 @@ BinarySearchTreeMethods.depthFirstLog = function (cb) {
 
 /*
  * Complexity: What is the time complexity of the above functions?
+  BinarySearchTree:linear (b/c of extend)
+  insert: logartithmic
+  contains: logarithmic
+  depthFirstLog: linear
  */

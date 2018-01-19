@@ -19,6 +19,15 @@ describe('binarySearchTree', function() {
     expect(binarySearchTree.left.right.value).to.equal(3);
     expect(binarySearchTree.right.left.value).to.equal(6);
   });
+  
+  it('should only add unique values', function () {
+    binarySearchTree.insert(2);
+    binarySearchTree.insert(5);
+    var array = [];
+    var func = function(value) { array.push(value); };
+    binarySearchTree.depthFirstLog(func);
+    expect(array).to.eql([5, 2]);
+  });
 
   it('should have a working "contains" method', function() {
     binarySearchTree.insert(2);
