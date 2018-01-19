@@ -68,4 +68,19 @@ describe('graph', function() {
     expect(graph.hasEdge(3, 5)).to.equal(true);
     expect(graph.hasEdge(5, 5)).to.equal(true);
   });
+  
+  it('should return an empty array for a node with no edges', function() {
+    graph.addNode(4);
+    graph.addNode(3);
+    graph.addNode(6);
+    graph.addEdge(3, 6);
+    expect(JSON.stringify(graph.nodes[0].edges)).to.equal('[]');
+  });
+  
+  it('should return the removed node', function() {
+    graph.addNode(4);
+    graph.addNode(8);
+    var removed = graph.nodes[1];
+    expect(JSON.stringify(graph.removeNode(8))).to.equal(JSON.stringify(removed));
+  });
 });

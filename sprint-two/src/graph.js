@@ -44,6 +44,7 @@ Graph.prototype.removeNode = function(nodeValue) {
   }
   
   this.nodes.splice(removedNodeIndex, 1);
+  return removedNode;
   
 };
 
