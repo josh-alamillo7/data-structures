@@ -16,7 +16,6 @@ treeMethods.addChild = function(value) {
 };
 
 treeMethods.contains = function(target) {
-  //debugger;
   var searchAllTrees = function (tree) {
     if (tree.value === target) {
       return true;
@@ -40,4 +39,8 @@ treeMethods.contains = function(target) {
 
 /*
  * Complexity: What is the time complexity of the above functions?
+ Tree: linear (b/c of extend)
+ addChild: constant
+ contains: linear
+ 
  */
