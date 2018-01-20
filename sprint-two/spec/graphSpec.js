@@ -74,13 +74,13 @@ describe('graph', function() {
     graph.addNode(3);
     graph.addNode(6);
     graph.addEdge(3, 6);
-    expect(JSON.stringify(graph.nodes[0].edges)).to.equal('[]');
+    expect(JSON.stringify(graph.nodes[4].edges)).to.equal('[]');
   });
   
   it('should return the removed node', function() {
     graph.addNode(4);
     graph.addNode(8);
-    var removed = graph.nodes[1];
+    var removed = graph.nodes[8];
     expect(JSON.stringify(graph.removeNode(8))).to.equal(JSON.stringify(removed));
   });
 });
