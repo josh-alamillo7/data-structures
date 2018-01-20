@@ -1,6 +1,7 @@
 var BinarySearchTree = function(value) {
   var newTree = {
     value: value,
+    depth: 1,
     left: null,
     right: null,
   };
@@ -12,9 +13,11 @@ BinarySearchTreeMethods = {};
 
 
 BinarySearchTreeMethods.insert = function (value) {
+  var depthCounter = this.depth;
   if (this.value > value) {
     if (this.left === null) {
       this.left = BinarySearchTree(value); 
+      this.left.depth += depthCounter;
     } else {
       this.left.insert(value);
     }
@@ -22,6 +25,7 @@ BinarySearchTreeMethods.insert = function (value) {
   } else if (this.value < value) {
     if (this.right === null) {
       this.right = BinarySearchTree(value);
+      this.right.depth += depthCounter;
     } else {
       this.right.insert(value);
     } 
@@ -59,9 +63,8 @@ BinarySearchTreeMethods.depthFirstLog = function (cb) {
   
 };
 
-BinarySearchTreeMethods.breadthFirstLog = function (cb) {
+BinarySearchTreeMethods.breadthFirstLog = function (cb, targetDepth) {
   var queue = new Queue();
-  var results = [];
   var currentTree = this;
   
   queue.enqueue(currentTree);
@@ -75,11 +78,13 @@ BinarySearchTreeMethods.breadthFirstLog = function (cb) {
     if (currentNode.right !== null) {
       queue.enqueue(currentNode.right);
     }
-    
-    results.push(cb(currentNode.value));
+    if (targetDepth && currentNode.depth === targetDepth) {
+      cb(currentNode.value);   
+    } else if (!targetDepth) {
+      cb(currentNode.value);
+    }
   }
   
-  return results;
 };
 
 
