@@ -59,6 +59,56 @@ BinarySearchTreeMethods.depthFirstLog = function (cb) {
   
 };
 
+BinarySearchTreeMethods.breadthFirstLog = function (cb) {
+  var queue = new Queue();
+  var results = [];
+  var currentTree = this;
+  
+  queue.enqueue(currentTree);
+  
+  while (queue.size() > 0) {
+    
+    var currentNode = queue.dequeue();
+    if (currentNode.left !== null) {
+      queue.enqueue(currentNode.left);
+    }
+    if (currentNode.right !== null) {
+      queue.enqueue(currentNode.right);
+    }
+    
+    results.push(cb(currentNode.value));
+  }
+  
+  return results;
+};
+
+
+var Queue = function () {
+  this.storage = {};
+  this.addIndex = 0;
+  this.removeIndex = 0;
+};
+
+Queue.prototype.enqueue = function (value) {
+  this.storage[this.addIndex] = value;
+  this.addIndex++;
+};
+
+Queue.prototype.dequeue = function () {
+  if (this.addIndex > this.removeIndex) {
+    removedValue = this.storage[this.removeIndex];
+    delete this.storage[this.removeIndex];
+    this.removeIndex++;
+    return removedValue; 
+  }
+};
+
+Queue.prototype.size = function () {
+  return this.addIndex - this.removeIndex;
+};
+
+
+
 
 /*
  * Complexity: What is the time complexity of the above functions?

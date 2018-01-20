@@ -38,8 +38,29 @@ treeMethods.contains = function(target) {
   return searchAllTrees(this);
 };
 
+treeMethods.removeFromParent = function () {
+  var target = this.value;
+  var parentsChildren = this.parent.children;
+  this.parent.children = parentsChildren.filter( function (child) {
+    return child.value !== target;
+  });
+  
+  this.parent = null;
+};
 
-
+treeMethods.traverse = function (cb) {
+  
+  var traverseTree = function (tree) {
+    cb(tree);
+    if (tree.children.length > 0) {
+      for (i = 0; i < tree.children.length; i++) {
+        traverseTree(tree.children[i]);
+      }
+    }
+  };
+  
+  traverseTree(this);
+};
 
 
 /*

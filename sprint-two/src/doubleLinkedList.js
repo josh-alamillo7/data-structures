@@ -129,3 +129,18 @@ var DoubleNode = function (value) {
   _node.prev = null;
   return _node;
 };
+
+/*
+ * What are the time complexities of the above functions?
+ *
+ * DoubleLinkedList: constant
+ * addToTail: constant
+ * addToHead: constant
+ * removeTail: constant
+ * removeHead: constant
+ * traverseFromHead: linear
+ * traverseFromTail: linear
+ * contains: linear
+ * insert: linear
+ * DoubleNode: constant
+*/
