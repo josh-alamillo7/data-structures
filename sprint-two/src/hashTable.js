@@ -15,10 +15,23 @@ HashTable.prototype.initializeStorage = function () {
 
 HashTable.prototype.insert = function(k, v) {
   var index = getIndexBelowMaxForKey(k, this._limit);
-  var arrayAtIndex = this._storage.get(index);
+  var bucket = this._storage.get(index);
   var tuple = [k, v];
-  arrayAtIndex.push(tuple);
-  this._storage.set(index, arrayAtIndex);
+  var found = false;
+  
+  for (var i = 0; i < bucket.length; i++) {
+    if (bucket[i][0] === k) {
+      bucket[i][1] = v;
+      found = true;
+      break;
+    }
+  }
+  
+  if (found === false) {
+    bucket.push(tuple);  
+  }
+  
+  this._storage.set(index, bucket);
   this._size++;
   
   if ((this._size / this._limit) > 0.75) {
@@ -31,12 +44,13 @@ HashTable.prototype.retrieve = function(k) {
   var index = getIndexBelowMaxForKey(k, this._limit);
   var arrayAtIndex = this._storage.get(index);
   var returnValue;
-
-  arrayAtIndex.forEach(function(tuple) {
-    if (tuple[0] === k) {
-      returnValue = tuple[1];
+  
+  for (var i = 0; i < arrayAtIndex.length; i++) {
+    if (arrayAtIndex[i][0] === k) {
+      returnValue = arrayAtIndex[i][1];
+      break;
     }
-  });
+  }
 
   return returnValue;
 };
