@@ -31,7 +31,6 @@ HashTable.prototype.insert = function(k, v) {
     bucket.push(tuple);  
   }
   
-  this._storage.set(index, bucket);
   this._size++;
   
   if ((this._size / this._limit) > 0.75) {
